@@ -23,10 +23,7 @@ class _DownloadPageState extends State<DownloadPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // const Image(
-          //     image: AssetImage(
-          //         'asset/WhatsApp Image 2024-06-06 at 10.43.08_0601ff47.jpg'),
-          //         ),
+       
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(

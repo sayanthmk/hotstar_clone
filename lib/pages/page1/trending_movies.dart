@@ -15,7 +15,7 @@ class _HorizontalSmallState extends State<HorizontalSmall> {
   late Future<List<Movie>> _nowplaying;
 
   Future<List<Movie>> nowplaying() async {
-    final results = await _tmdbService.fetchNowPlayingMovies();
+    final results = await _tmdbService.toprated();
     return results.map((movie) => Movie.fromJson(movie)).toList();
   }
 

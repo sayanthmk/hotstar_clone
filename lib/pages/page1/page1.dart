@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:hotstar/pages/page1/hor_large.dart';
-import 'package:hotstar/pages/page1/hor_small.dart';
+import 'package:hotstar/pages/page1/latest_release.dart';
+import 'package:hotstar/pages/page1/trending_movies.dart';
 import 'package:hotstar/pages/page1/titles.dart';
 import 'package:hotstar/services/model.dart';
 import 'package:hotstar/services/tmdb_service.dart';
@@ -61,8 +61,10 @@ class _HomepageState extends State<Homepage> {
                           },
                           options: CarouselOptions(
                             height: 400,
-                            viewportFraction: 1.0,
+                            viewportFraction: 1,
+                            aspectRatio: 14 / 15,
                             autoPlay: true,
+                            // viewportFraction = 0.8,
                             // enlargeCenterPage: true,
                             autoPlayInterval: const Duration(seconds: 5),
                             onPageChanged: (index, reason) => setState(() {
@@ -166,6 +168,39 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
             const HorizontalSmall(),
+            const Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Popular Shows",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ],
+            ),
+            const HorizontalLarge(),
+            const SizedBox(
+              height: 10,
+            ),
+            const Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Dubbed Delights",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ],
+            ),
+            const HorizontalSmall(),
           ],
         ),
       ),
@@ -174,7 +209,8 @@ class _HomepageState extends State<Homepage> {
 
   Widget buildImage(Movie movie, int index) => Container(
         color: Colors.yellow,
-        // height: 200,
+        height: double.infinity,
+        width: double.infinity,
         child: ClipRRect(
           child: Image.network(
               fit: BoxFit.cover,
