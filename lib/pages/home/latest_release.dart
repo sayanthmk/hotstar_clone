@@ -64,7 +64,8 @@ class _HorizontalLargeState extends State<HorizontalLarge> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.grey,
                         ),
-                        child: ClipRect(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
                           child: CachedNetworkImage(
                             imageUrl:
                                 'https://image.tmdb.org/t/p/w500${seriesset.posterPath}',

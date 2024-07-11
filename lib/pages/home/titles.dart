@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotstar/pages/page3/detailsrow.dart';
+import 'package:hotstar/pages/new&hot/detailsrow.dart';
 
 class TitlesMovies extends StatefulWidget {
   const TitlesMovies({
@@ -11,19 +11,6 @@ class TitlesMovies extends StatefulWidget {
 }
 
 class _TitlesMoviesState extends State<TitlesMovies> {
-  // final TMDBService _tmdbService = TMDBService();
-  // late Future<List<Movie>> _movies;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _movies = fetchMovies();
-  // }
-
-  // Future<List<Movie>> fetchMovies() async {
-  //   final results = await _tmdbService.fetchMovies();
-  //   return results.map((movie) => Movie.fromJson(movie)).toList();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Padding(

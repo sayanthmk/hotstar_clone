@@ -1,36 +1,37 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:hotstar/pages/seasonpage/seasonpage.dart';
 import 'package:hotstar/services/model.dart';
 import 'package:hotstar/services/tmdb_service.dart';
 
-class HorizontalSmall extends StatefulWidget {
-  const HorizontalSmall({super.key});
+class ShowInDetailPage extends StatefulWidget {
+  const ShowInDetailPage({super.key});
 
   @override
-  State<HorizontalSmall> createState() => _HorizontalSmallState();
+  State<ShowInDetailPage> createState() => _ShowInDetailPageState();
 }
 
-class _HorizontalSmallState extends State<HorizontalSmall> {
+class _ShowInDetailPageState extends State<ShowInDetailPage> {
   final TMDBService _tmdbService = TMDBService();
-  late Future<List<Movie>> _nowplaying;
+  late Future<List<Movie>> _series;
 
-  Future<List<Movie>> nowplaying() async {
-    final results = await _tmdbService.toprated();
+  Future<List<Movie>> seriesData() async {
+    final results = await _tmdbService.fetchMovies();
     return results.map((movie) => Movie.fromJson(movie)).toList();
   }
 
   @override
   void initState() {
     super.initState();
-    _nowplaying = nowplaying();
+    _series = seriesData();
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 120,
+        height: 160,
         child: FutureBuilder(
-          future: _nowplaying,
+          future: _series,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -41,26 +42,30 @@ class _HorizontalSmallState extends State<HorizontalSmall> {
                 child: Text("Error"),
               );
             } else {
-              final nowplaying = snapshot.data!;
+              final series = snapshot.data!;
               return ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: series.length,
                 itemBuilder: (context, index) {
-                  final nowplaylist = nowplaying[index];
+                  final seriesset = series[index];
                   return Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SeasonPage(series: seriesset),
+                        ));
+                      },
                       child: Container(
-                        width: 170,
+                        width: 120,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
+                          borderRadius: BorderRadius.circular(20),
                           color: Colors.grey,
                         ),
-                        child: ClipRect(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
                           child: CachedNetworkImage(
                             imageUrl:
-                                'https://image.tmdb.org/t/p/w500${nowplaylist.posterPath}',
+                                'https://image.tmdb.org/t/p/w500${seriesset.posterPath}',
                             fit: BoxFit.fill,
                           ),
                         ),

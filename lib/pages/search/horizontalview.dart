@@ -50,34 +50,3 @@ class _HorizontalViewItemsState extends State<HorizontalViewItems> {
     );
   }
 }
-// import 'package:flutter/material.dart';
-
-// SizedBox horizontalview() {
-//   return SizedBox(
-//     height: 40,
-//     child: ListView.builder(
-//       scrollDirection: Axis.horizontal,
-//       itemCount: 10,
-//       itemBuilder: (context, index) {
-//         return Padding(
-//           padding: const EdgeInsets.all(3.0),
-//           child: InkWell(
-//             onTap: () {},
-//             child: Container(
-//               width: 70,
-//               decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.circular(5),
-//                   border: Border.all(color: Colors.grey)),
-//               child: Center(
-//                 child: Text(
-//                   "Item $index",
-//                   style: const TextStyle(color: Colors.grey),
-//                 ),
-//               ),
-//             ),
-//           ),
-//         );
-//       },
-//     ),
-//   );
-// }

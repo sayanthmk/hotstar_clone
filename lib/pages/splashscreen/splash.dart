@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotstar/pages/page1/page1.dart';
+import 'package:hotstar/pages/bottomnav/bottomnavigationbar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -26,8 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 6, 11, 19), // Dark blue color
-                Color.fromARGB(255, 36, 5, 193), // Light blue color
+                Color.fromARGB(255, 6, 11, 19),
+                Color.fromARGB(255, 36, 5, 193),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -43,8 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> gotologinpage() async {
-    await Future.delayed(Duration(seconds: 3));
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (ctx) => Homepage()));
+    await Future.delayed(const Duration(seconds: 3));
+    // ignore: use_build_context_synchronously
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (ctx) => const BottomNavigationBarPage()));
   }
 }

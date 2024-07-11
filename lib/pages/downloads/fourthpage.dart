@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotstar/pages/bottomnav/bottomnavigationbar.dart';
 
 class DownloadPage extends StatefulWidget {
   const DownloadPage({super.key});
@@ -23,7 +24,6 @@ class _DownloadPageState extends State<DownloadPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-       
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
@@ -45,18 +45,25 @@ class _DownloadPageState extends State<DownloadPage> {
           const SizedBox(
             height: 10,
           ),
-          Container(
-            height: 60,
-            width: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const BottomNavigationBarPage(),
+              ));
+            },
+            child: Container(
+              height: 60,
+              width: 300,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: const Center(
+                  child: Text(
+                "Go to Home",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              )),
             ),
-            child: const Center(
-                child: Text(
-              "Go to Home",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            )),
           )
         ],
       ),

@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:hotstar/pages/page1/latest_release.dart';
-import 'package:hotstar/pages/page1/trending_movies.dart';
-import 'package:hotstar/pages/page1/titles.dart';
+import 'package:hotstar/pages/home/latest_release.dart';
+import 'package:hotstar/pages/home/showindetail.dart';
+import 'package:hotstar/pages/home/trending_movies.dart';
+import 'package:hotstar/pages/home/titles.dart';
 import 'package:hotstar/services/model.dart';
 import 'package:hotstar/services/tmdb_service.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -60,16 +61,11 @@ class _HomepageState extends State<Homepage> {
                             return buildImage(movie, index);
                           },
                           options: CarouselOptions(
-                            height: 400,
+                            height: 450,
                             viewportFraction: 1,
                             aspectRatio: 14 / 15,
                             autoPlay: true,
-                            // viewportFraction = 0.8,
-                            // enlargeCenterPage: true,
                             autoPlayInterval: const Duration(seconds: 5),
-                            onPageChanged: (index, reason) => setState(() {
-                              activeIndex = index;
-                            }),
                           ),
                         );
                       }
@@ -135,9 +131,10 @@ class _HomepageState extends State<Homepage> {
               height: 10,
             ),
             buildindicator(),
-            const Row(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     "Latest Releases",
@@ -145,6 +142,20 @@ class _HomepageState extends State<Homepage> {
                         color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.w500),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => const ShowInDetailPage()));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
                 ),
               ],
@@ -201,6 +212,53 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
             const HorizontalSmall(),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 150,
+                width: 400,
+                color: Colors.blueAccent,
+                child: FutureBuilder<List<Movie>>(
+                  future: _movies,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(
+                        child: Text("Error:${snapshot.error}"),
+                      );
+                    } else {
+                      final movies = snapshot.data!;
+                      return CarouselSlider.builder(
+                        itemCount: movies.length,
+                        itemBuilder: (context, index, realInex) {
+                          final movie = movies[index];
+                          return buildImage(movie, index);
+                        },
+                        options: CarouselOptions(
+                          height: 450,
+                          viewportFraction: 1,
+                          aspectRatio: 14 / 15,
+                          autoPlay: true,
+                          // viewportFraction = 0.8,
+                          // enlargeCenterPage: true,
+                          autoPlayInterval: const Duration(seconds: 5),
+                          onPageChanged: (index, reason) => setState(() {
+                            activeIndex = index;
+                          }),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ),
+            ),
+            // ContainerMoviePage(),
           ],
         ),
       ),

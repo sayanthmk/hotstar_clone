@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotstar/pages/page3/page3.dart';
+import 'package:hotstar/pages/new&hot/page3.dart';
 
 class ViewTabBar extends StatefulWidget {
   const ViewTabBar({super.key});

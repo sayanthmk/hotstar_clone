@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:hotstar/pages/page2/page2.dart';
-import 'package:hotstar/pages/page3/tabbar.dart';
-import 'package:hotstar/pages/page4/fourthpage.dart';
-import 'package:hotstar/pages/page5/loginpage.dart';
-import 'package:hotstar/pages/page1/page1.dart';
+import 'package:hotstar/pages/search/page2.dart';
+import 'package:hotstar/pages/new&hot/tabbar.dart';
+import 'package:hotstar/pages/downloads/fourthpage.dart';
+import 'package:hotstar/pages/myspace/loginpage.dart';
+import 'package:hotstar/pages/home/page1.dart';
 
 class BottomNavigationBarPage extends StatefulWidget {
   const BottomNavigationBarPage({super.key});
@@ -42,10 +42,11 @@ class _BottomNavigationBarPageState extends State<BottomNavigationBarPage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.thunderstorm), label: "New&Hot"),
+              icon: Icon(Icons.add_box_sharp), label: "New&Hot"),
           BottomNavigationBarItem(
               icon: Icon(Icons.download), label: "Downloads"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "My Space"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_pin), label: "My Space"),
         ],
       ),
     );

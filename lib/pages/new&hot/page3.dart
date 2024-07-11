@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hotstar/pages/page3/detailsrow.dart';
-import 'package:hotstar/pages/page3/remindmebox.dart';
+import 'package:hotstar/pages/new&hot/detailsrow.dart';
+import 'package:hotstar/pages/new&hot/remindmebox.dart';
 import 'package:hotstar/services/model.dart';
 import 'package:hotstar/services/tmdb_service.dart';
 import 'package:readmore/readmore.dart';
 
 class ThirdPage extends StatefulWidget {
-  const ThirdPage({Key? key}) : super(key: key);
+  const ThirdPage({super.key});
 
   @override
   State<ThirdPage> createState() => _ThirdPageState();
@@ -62,12 +62,15 @@ class _ThirdPageState extends State<ThirdPage> {
       backgroundColor: Colors.black,
       body: Column(
         children: [
+          const SizedBox(
+            height: 20,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search movies',
-                hintStyle: TextStyle(color: Colors.grey),
+                hintStyle: const TextStyle(color: Colors.grey),
                 fillColor: Colors.white,
                 filled: true,
                 border: OutlineInputBorder(
@@ -77,6 +80,9 @@ class _ThirdPageState extends State<ThirdPage> {
               ),
               onChanged: _onSearchChanged,
             ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Expanded(
             child: SizedBox(
@@ -101,8 +107,8 @@ class _ThirdPageState extends State<ThirdPage> {
                             Container(
                               height: 200,
                               width: screenWidth,
-                              decoration:
-                                  BoxDecoration(color: Colors.amberAccent),
+                              decoration: const BoxDecoration(
+                                  color: Colors.amberAccent),
                               child: ClipRect(
                                 child: CachedNetworkImage(
                                   imageUrl:
@@ -111,17 +117,18 @@ class _ThirdPageState extends State<ThirdPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
                               height: 100,
                               width: screenWidth,
-                              decoration: BoxDecoration(color: Colors.black),
+                              decoration:
+                                  const BoxDecoration(color: Colors.black),
                               child: Center(
                                 child: Text(
                                   listmovie.title,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.grey,
                                     fontSize: 30,
                                     overflow: TextOverflow.ellipsis,
@@ -137,7 +144,7 @@ class _ThirdPageState extends State<ThirdPage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     'Releasing on ${listmovie.releasedate}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w700,
                                         color: Colors.white),
@@ -146,7 +153,7 @@ class _ThirdPageState extends State<ThirdPage> {
                               ],
                             ),
                             detailsrow(details: listmovie),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             ReadMoreText(
@@ -157,11 +164,11 @@ class _ThirdPageState extends State<ThirdPage> {
                               textAlign: TextAlign.left,
                               style: TextStyle(color: Colors.grey[400]),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             remindmebox(listmovie: listmovie),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             )
                           ],
